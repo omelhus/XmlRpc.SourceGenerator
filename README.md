@@ -5,3 +5,4 @@ All you need to do to create a XML-RPC Client is to define the interface and dec
 
 ## Examples
 
+Todo... take a look at the tests for now.
