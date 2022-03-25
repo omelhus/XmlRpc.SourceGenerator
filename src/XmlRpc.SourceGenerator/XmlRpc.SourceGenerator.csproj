@@ -19,7 +19,9 @@
   </ItemGroup>
 		
   <ItemGroup>
-    <ProjectReference Include="..\XmlRpc.SourceGenerator.Analyzer\XmlRpc.SourceGenerator.Analyzer.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\XmlRpc.SourceGenerator.Analyzer\XmlRpc.SourceGenerator.Analyzer.csproj" PrivateAssets="All">
+      <CopyLocal>True</CopyLocal>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>
