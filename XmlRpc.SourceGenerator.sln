@@ -14,7 +14,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4ACBC62F-4996-42F5-B6EC-764D20BE2776}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
-		XmlRpc.SourceGenerator.nuspec = XmlRpc.SourceGenerator.nuspec
 	EndProjectSection
 EndProject
 Global

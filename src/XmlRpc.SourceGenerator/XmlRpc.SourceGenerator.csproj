@@ -5,7 +5,15 @@
 	<LangVersion>10</LangVersion>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	<Version>1.0.1</Version>
+	<Authors>omelhus</Authors>
+	<Company>ON IT AS</Company>
+	<Description>XML-RPC Client source generator to create an XML-RPC client with async methods from an interface. Migrations from xml-rpc.net should be easy.</Description>
+	<Copyright>ON IT AS</Copyright>
+	<PackageProjectUrl>https://github.com/omelhus/XmlRpc.SourceGenerator</PackageProjectUrl>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageIcon>logo.png</PackageIcon>
+	<PackageTags>xml-rpc;async;httpclient;source generator</PackageTags>
+	<PackageReleaseNotes>Initial release</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +23,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="../XmlRpc.SourceGenerator.Analyzer\bin\$(Configuration)\netstandard2.0\XmlRpc.SourceGenerator.Analyzer.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="..\..\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\XmlRpc.SourceGenerator.Analyzer\bin\$(Configuration)\netstandard2.0\XmlRpc.SourceGenerator.Analyzer.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 		
   <ItemGroup>
