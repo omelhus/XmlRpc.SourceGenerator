@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7C7129DA-2DAF-4562-9419-F7FD15BFFEEB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmlRpc.SourceGenerator.Tests", "tests\XmlRpc.SourceGenerator.Tests\XmlRpc.SourceGenerator.Tests.csproj", "{88EC092F-6029-4BE1-92B8-3E843AD2623D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmlRpc.SourceGenerator", "src\XmlRpc.SourceGenerator\XmlRpc.SourceGenerator.csproj", "{0ECC6718-96FD-48A2-B151-AD8AB16F0553}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XmlRpc.SourceGenerator.Analyzer", "src\XmlRpc.SourceGenerator.Analyzer\XmlRpc.SourceGenerator.Analyzer.csproj", "{50E8A8EA-3A1B-47D8-BA07-4D96BF74B535}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4ACBC62F-4996-42F5-B6EC-764D20BE2776}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		XmlRpc.SourceGenerator.nuspec = XmlRpc.SourceGenerator.nuspec
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88EC092F-6029-4BE1-92B8-3E843AD2623D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88EC092F-6029-4BE1-92B8-3E843AD2623D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88EC092F-6029-4BE1-92B8-3E843AD2623D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88EC092F-6029-4BE1-92B8-3E843AD2623D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ECC6718-96FD-48A2-B151-AD8AB16F0553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ECC6718-96FD-48A2-B151-AD8AB16F0553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ECC6718-96FD-48A2-B151-AD8AB16F0553}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ECC6718-96FD-48A2-B151-AD8AB16F0553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50E8A8EA-3A1B-47D8-BA07-4D96BF74B535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50E8A8EA-3A1B-47D8-BA07-4D96BF74B535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50E8A8EA-3A1B-47D8-BA07-4D96BF74B535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50E8A8EA-3A1B-47D8-BA07-4D96BF74B535}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{88EC092F-6029-4BE1-92B8-3E843AD2623D} = {7C7129DA-2DAF-4562-9419-F7FD15BFFEEB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04B2C6E4-5FAB-4122-BB4A-64E0AE19FA4E}
+	EndGlobalSection
+EndGlobal

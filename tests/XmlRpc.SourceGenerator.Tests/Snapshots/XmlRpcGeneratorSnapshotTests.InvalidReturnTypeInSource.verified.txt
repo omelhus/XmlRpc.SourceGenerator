@@ -1,0 +1,17 @@
+﻿{
+  Diagnostics: [
+    {
+      Id: XR1001,
+      Title: Return type must be Task<T>,
+      Severity: Error,
+      WarningLevel: 0,
+      Location: : (12,0)-(12,11),
+      Description: All methods on TestXmlRpcClient must be async, and thus must return Task<T>,
+      HelpLink: ,
+      MessageFormat: Return type must be Task<T>,
+      Message: Return type must be Task<T>,
+      Category: Usage,
+      CustomTags: []
+    }
+  ]
+}
