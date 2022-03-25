@@ -38,7 +38,7 @@ namespace XmlRpc.SourceGenerator
             }
         }
 
-        static async void Execute(Compilation compilation, ImmutableArray<InterfaceDeclarationSyntax> interfaces, SourceProductionContext context)
+        static void Execute(Compilation compilation, ImmutableArray<InterfaceDeclarationSyntax> interfaces, SourceProductionContext context)
         {
             try
             {
