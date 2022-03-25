@@ -16,10 +16,10 @@ namespace TestSourceGenNamespace;
 [XmlRpcClient]
 public interface ITestXmlRpcClient
 {
-    [XmlRpcMethod(""IntegrationManager.testConnect"")]
+    [XmlRpcMethod("IntegrationManager.testConnect")]
     Task<string> TestConnect();
 
-    [XmlRpcMethod(""IntegrationManager.getWorkshops"")]
+    [XmlRpcMethod("IntegrationManager.getWorkshops")]
     Task<string> GetWorkshops(string sysnme, string syspwd);
 }
 ```
