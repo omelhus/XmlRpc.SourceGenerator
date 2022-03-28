@@ -172,23 +172,8 @@ namespace XmlRpc.SourceGenerator
             for (var i = 0; i < method.ParameterList.Parameters.Count; i++)
             {
                 var parameter = method.ParameterList.Parameters[i];
-                string type = null;
-                if (parameter.Type is PredefinedTypeSyntax typeSyntax)
-                {
-                    type = typeSyntax.Keyword.Text;
-
-                }
-                else if (parameter.Type is IdentifierNameSyntax idSyntax)
-                {
-                    type = idSyntax.Identifier.Text;
-                }
-                else
-                {
-                    Debug.WriteLine($"Type of parameter is {parameter.Type.GetType()}");
-                    continue;
-                }
                 var name = parameter.Identifier.ValueText;
-                sourceBuilder.Append($"{type} {name}");
+                sourceBuilder.Append(parameter.ToFullString());
                 parameterIdentifiers.Add(name);
                 if (i != method.ParameterList.Parameters.Count - 1)
                 {

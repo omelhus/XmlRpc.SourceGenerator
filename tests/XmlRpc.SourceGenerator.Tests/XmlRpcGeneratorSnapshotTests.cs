@@ -35,6 +35,23 @@ public interface ITestXmlRpcClient
         }
 
         [TestMethod]
+        public Task VerifyByteArrayIsSupported()
+        {
+            var source = @"
+using XmlRpc.SourceGenerator;
+
+namespace TestSourceGenNamespace;
+
+[XmlRpcClient(""IntegrationManager"")]
+public interface ITestXmlRpcClient
+{
+    Task<string> createMethodWithByteArray(byte[] byteArray);
+}";
+            return Verify(TestHelper.Compile(source))
+                         .UseDirectory("Snapshots");
+        }
+
+        [TestMethod]
         public Task GenerateSourceAndVerifyWithRoot()
         {
             var source = @"
