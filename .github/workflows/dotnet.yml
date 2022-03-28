@@ -1,9 +1,7 @@
 name: .NET
 
 on:
-  create:
-    branches:
-      - release/**
+
   push:
     tags:
     - v*
