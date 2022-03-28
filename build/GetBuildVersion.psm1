@@ -1,6 +1,7 @@
 Function GetBuildVersion {
     Param (
-        [string]$VersionString
+        [string]$VersionString,
+        [string]$PreReleasePrefix
     )
 
     # Process through regex
@@ -10,8 +11,8 @@ Function GetBuildVersion {
         $date = [System.DateTime]::Now;        
         $year = $date.Year;
         $day = $date.DayOfYear;
-        $min = $date.Minute*$date.Hour
-        return "${year}.${day}.${min}-pre";
+        $min = $date.Minute+$date.Hour*60
+        return "1.0.${day}.${min}-pre";
     }
 
     # Extract the build metadata
