@@ -11,7 +11,7 @@ Function GetBuildVersion {
         $year = $date.Year;
         $day = $date.DayOfYear;
         $min = $date.Minute*$date.Hour
-        write-host "${year}.${day}.${min}-pre";
+        return "${year}.${day}.${min}-pre";
     }
 
     # Extract the build metadata
