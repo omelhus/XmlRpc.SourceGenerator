@@ -34,11 +34,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Verify commit exists in origin/main
-        run: |
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-          git branch --remote --contains | grep origin/main
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
@@ -59,13 +54,19 @@ jobs:
         run: nuget restore $SOLUTION
 
       - name: Build
-        run: dotnet build $env:SOLUTION -c $env:BUILD_CONFIG -p:Version=$env:BUILD_VERSION
+        run: dotnet build $env:SOLUTION -c $env:BUILD_CONFIG -p:Version=$env:BUILD_VERSION --no-restore
 
       - name: Test
         run: dotnet test -c $env:BUILD_CONFIG /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --no-restore --no-build -c Release --verbosity normal
 
       - name: Codecov
         uses: codecov/codecov-action@v1
+
+      - name: Verify commit exists in origin/main
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+          git branch --remote --contains | grep origin/main
 
       - name: Publish
         if: startsWith(github.ref, 'refs/tags/v')
