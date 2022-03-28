@@ -7,10 +7,11 @@ Function GetBuildVersion {
     $VersionString -match "(?<major>\d+)(\.(?<minor>\d+))?(\.(?<patch>\d+))?(\-(?<pre>[0-9A-Za-z\-\.]+))?(\+(?<build>\d+))?" | Out-Null
 
     if ($matches -eq $null) {
-        $date = Get-Date -Format "yyyy.MM.dd-HHmm"
-        write-host $date
-        return "${date}-build";
-        #return "1.0.0-build"
+        $date = [System.DateTime]::Now;        
+        $year = $date.Year;
+        $day = $date.DayOfYear;
+        $min = $date.Minute*$date.Hour
+        write-host "${year}.${day}.${min}-pre";
     }
 
     # Extract the build metadata
