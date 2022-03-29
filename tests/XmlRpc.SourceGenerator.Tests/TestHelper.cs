@@ -16,6 +16,14 @@ namespace XmlRpc.SourceGenerator.Tests
             }
         }
 
+        public static string StreamToText(Stream stream)
+        {
+            if (stream.CanSeek)
+                stream.Seek(0, SeekOrigin.Begin);
+            using var reader = new StreamReader(stream);
+            return reader.ReadToEnd();
+        }
+
         public static GeneratorDriver Compile(string source)
         {
             // Parse the provided string into a C# syntax tree

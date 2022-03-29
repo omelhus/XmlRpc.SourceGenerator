@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<methodCall>
+  <methodName>testCommand</methodName>
+  <params>
+    <param>
+      <value>
+        <string>abc123</string>
+      </value>
+    </param>
+    <param>
+      <value>
+        <base64>cGFyYW0x</base64>
+      </value>
+    </param>
+  </params>
+</methodCall>

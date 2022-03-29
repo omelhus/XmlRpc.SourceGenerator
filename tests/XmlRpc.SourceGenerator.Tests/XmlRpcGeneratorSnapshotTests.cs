@@ -5,6 +5,7 @@ using VerifyTests;
 
 namespace XmlRpc.SourceGenerator.Tests
 {
+
     [TestClass]
     public class XmlRpcGeneratorSnapshotTests : VerifyBase
     {

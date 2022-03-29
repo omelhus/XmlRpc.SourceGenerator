@@ -6,7 +6,7 @@ namespace XmlRpc.SourceGenerator
 {
     public static class XmlRpcHelper
     {
-        private static Stream CreateCommand(string methodName, params object[] parameters)
+        internal static Stream CreateCommand(string methodName, params object[] parameters)
         {
             var serializer = new XmlRpcRequestSerializer();
             var request = new XmlRpcRequest
