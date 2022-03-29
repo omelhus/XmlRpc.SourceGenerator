@@ -27,8 +27,7 @@ namespace XmlRpc.SourceGenerator
                 .PostAsync(url, new StreamContent(request) { Headers = { { "Content-Type", "text/xml" } } })
                 .ConfigureAwait(false);
             var deserializer = new XmlRpcResponseDeserializer();
-            var obj = deserializer.DeserializeResponse(await rsp.Content.ReadAsStreamAsync().ConfigureAwait(false), typeof(T));
-            return obj?.retVal as T;
+            return deserializer.DeserializeResponse(await rsp.Content.ReadAsStreamAsync().ConfigureAwait(false), typeof(T))?.retVal as T;
         }
     }
 }

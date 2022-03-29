@@ -1,6 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RichardSzalay.MockHttp;
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,12 @@ namespace XmlRpc.SourceGenerator.Tests
     [TestClass]
     public class XmlRpcHelperTests : VerifyBase
     {
+        [TestMethod]
+        public void TestCreateAttribute()
+        {
+            var attr = new XmlRpcClientAttribute("IntegrationManager");
+            attr.Root.Should().Be("IntegrationManager");
+        }
 
         [TestMethod]
         public Task TestCreateRpcCommandWithParameters()
@@ -21,9 +29,24 @@ namespace XmlRpc.SourceGenerator.Tests
             return Verify(TestHelper.StreamToText(stream))
                 .UseDirectory("Snapshots");
         }
+
         public class TestSerializerClass
         {
+            public class SubType
+            {
+                [XmlRpcNullMapping(NullMappingAction.Ignore)]
+                public string Id { get; set; }
+            }
             public string Id { get; set; }
+            public DateTime Date { get; set; } = DateTime.MinValue;
+            public int Number { get; set; }
+            public double Double { get; set; }
+            [XmlRpcNullMapping(NullMappingAction.Ignore)]
+            public byte[]? SomeData { get; set; }
+            [XmlRpcNullMapping(NullMappingAction.Ignore)]
+            public string[]? List { get; set; }
+            [XmlRpcMember(Member = "someSubType", Description = "Some Sub Type"), XmlRpcNullMapping(NullMappingAction.Ignore)]
+            public SubType SomeSubType { get; set; } = new SubType();
         }
         [TestMethod]
         public Task TestCreateRpcCommandWithDifferentParameters()
@@ -67,7 +90,45 @@ namespace XmlRpc.SourceGenerator.Tests
 </value></param></params></methodResponse>");
             var client = new HttpClient(mockHttp);
             var response = await client.SendXmlRpcRequest<string>("https://localost/xml-rpc", "testCommand", Encoding.UTF8.GetBytes("abc"));
+            response.Should().NotBeNullOrWhiteSpace();
             await Verify(response).UseDirectory("Snapshots");
+        }
+
+        [TestMethod]
+        public async Task TestSendXmlRpcRequestHttpClientMethodReturnObject()
+        {
+            var mockHttp = new MockHttpMessageHandler();
+            var date = new DateTime(2022, 01, 01);
+            var source = new TestSerializerClass()
+            {
+                Id = "key",
+                Date = date,
+                Number = 123,
+                Double = 123.8d,
+                SomeData = Encoding.UTF8.GetBytes("test"),
+                List = new[] { "a", "b", "c" },
+                SomeSubType = new TestSerializerClass.SubType
+                {
+                    Id = "123"
+                }
+            };
+            mockHttp.When("https://localost/xml-rpc")
+                .Respond((request) =>
+                {
+                    var content = request.Content.ReadAsStream();
+                    using var reader = new StreamReader(content);
+                    return new StringContent(reader.ReadToEnd().Replace("<methodCall", "<methodResponse"), Encoding.UTF8, "text/xml");
+                });
+            var client = new HttpClient(mockHttp);
+            var response = await client.SendXmlRpcRequest<TestSerializerClass>("https://localost/xml-rpc", "testCommand", source);
+            response.Should().NotBeNull();
+            response.Id.Should().Be(source.Id);
+            response.Date.Should().Be(source.Date);
+            response.Number.Should().Be(source.Number);
+            response.Double.Should().Be(source.Double);
+            response.SomeData.Should().BeEquivalentTo(source.SomeData);
+            response.List.Should().BeEquivalentTo(source.List);
+            response.SomeSubType.Id.Should().Be(source.SomeSubType.Id);
         }
     }
 }
