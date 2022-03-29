@@ -31,3 +31,18 @@ Then add it to DI using the extension method that's been generated.
 services.AddTestXmlRpcClient(options => options.Url = "https://some-test-xml-rcp-server.example");
 ...
 ```
+
+The following example will produce the exact same implementation as the one above.
+
+```csharp
+using XmlRpc.SourceGenerator;
+
+namespace TestSourceGenNamespace;
+
+[XmlRpcClient("IntegrationManager")]
+public interface ITestXmlRpcClient
+{
+    Task<string> testConnect();
+    Task<string> getWorkshops(string sysnme, string syspwd);
+}
+```
