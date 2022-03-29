@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RichardSzalay.MockHttp;
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,32 @@ namespace XmlRpc.SourceGenerator.Tests
             return Verify(TestHelper.StreamToText(stream))
                 .UseDirectory("Snapshots");
         }
+        public class TestSerializerClass
+        {
+            public string Id { get; set; }
+        }
+        [TestMethod]
+        public Task TestCreateRpcCommandWithDifferentParameters()
+        {
+            var stream = XmlRpcHelper.CreateCommand("testCommand",
+                "abc123",
+                100,
+                (long)250,
+                80.9,
+                false,
+                new DateTime(2022, 01, 01),
+                new[] { "a", "b" },
+                null,
+                new TestSerializerClass
+                {
+                    Id = "abc123"
+                }
+                );
+            return Verify(TestHelper.StreamToText(stream))
+                .UseDirectory("Snapshots");
+        }
+
+
         [TestMethod]
         public Task TestCreateRpcCommandWithoutParameters()
         {

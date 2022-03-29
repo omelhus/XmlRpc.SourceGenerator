@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<methodCall>
+  <methodName>testCommand</methodName>
+  <params>
+    <param>
+      <value>
+        <string>abc123</string>
+      </value>
+    </param>
+    <param>
+      <value>
+        <i4>100</i4>
+      </value>
+    </param>
+    <param>
+      <value>
+        <i8>250</i8>
+      </value>
+    </param>
+    <param>
+      <value>
+        <double>80.9</double>
+      </value>
+    </param>
+    <param>
+      <value>
+        <boolean>0</boolean>
+      </value>
+    </param>
+  </params>
+</methodCall>
