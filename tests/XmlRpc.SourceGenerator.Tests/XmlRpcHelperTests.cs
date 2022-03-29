@@ -37,6 +37,11 @@ namespace XmlRpc.SourceGenerator.Tests
                 [XmlRpcNullMapping(NullMappingAction.Ignore)]
                 public string Id { get; set; }
             }
+            public enum TestEnum
+            {
+                A,
+                B,
+            }
             public string Id { get; set; }
             public DateTime Date { get; set; } = DateTime.MinValue;
             public int Number { get; set; }
@@ -47,7 +52,22 @@ namespace XmlRpc.SourceGenerator.Tests
             public string[]? List { get; set; }
             [XmlRpcMember(Member = "someSubType", Description = "Some Sub Type"), XmlRpcNullMapping(NullMappingAction.Ignore)]
             public SubType SomeSubType { get; set; } = new SubType();
+            public bool SomeBool { get; set; }
+            public long SomeLong { get; set; }
+            [XmlRpcEnumMapping(EnumMapping.Number)]
+            public TestEnum SomeEnum { get; set; }
+
+            [XmlRpcEnumMapping(EnumMapping.String)]
+            public TestEnum SomeEnum2 { get; set; }
+
+            [XmlRpcNullMapping(NullMappingAction.Ignore)]
+            [XmlRpcMember]
+            public XmlRpcStruct Hashtable { get; set; }
+
+            [XmlRpcNullMapping(NullMappingAction.Ignore)]
+            public int[][] SomeMultidim { get; set; }
         }
+
         [TestMethod]
         public Task TestCreateRpcCommandWithDifferentParameters()
         {
@@ -110,8 +130,14 @@ namespace XmlRpc.SourceGenerator.Tests
                 SomeSubType = new TestSerializerClass.SubType
                 {
                     Id = "123"
-                }
+                },
+                SomeBool = false,
+                SomeLong = 123,
+                SomeEnum = TestSerializerClass.TestEnum.B,
+                SomeMultidim = new[] { new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, }, new[] { 10, 11, 12, 13, 14 } },
+                Hashtable = new XmlRpcStruct()
             };
+            source.Hashtable.Add("key", "value");
             mockHttp.When("https://localost/xml-rpc")
                 .Respond((request) =>
                 {
@@ -129,6 +155,12 @@ namespace XmlRpc.SourceGenerator.Tests
             response.SomeData.Should().BeEquivalentTo(source.SomeData);
             response.List.Should().BeEquivalentTo(source.List);
             response.SomeSubType.Id.Should().Be(source.SomeSubType.Id);
+            response.SomeBool.Should().Be(source.SomeBool);
+            response.SomeLong.Should().Be(source.SomeLong);
+            response.SomeEnum.Should().Be(source.SomeEnum);
+            response.Hashtable.Keys.Should().BeEquivalentTo(source.Hashtable.Keys);
+            response.Hashtable.Values.Should().BeEquivalentTo(source.Hashtable.Values);
+            response.SomeMultidim.Should().BeEquivalentTo(source.SomeMultidim);
         }
     }
 }

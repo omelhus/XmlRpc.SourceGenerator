@@ -84,6 +84,30 @@
               <struct />
             </value>
           </member>
+          <member>
+            <name>SomeBool</name>
+            <value>
+              <boolean>0</boolean>
+            </value>
+          </member>
+          <member>
+            <name>SomeLong</name>
+            <value>
+              <i8>0</i8>
+            </value>
+          </member>
+          <member>
+            <name>SomeEnum</name>
+            <value>
+              <i4>0</i4>
+            </value>
+          </member>
+          <member>
+            <name>SomeEnum2</name>
+            <value>
+              <string>A</string>
+            </value>
+          </member>
         </struct>
       </value>
     </param>
