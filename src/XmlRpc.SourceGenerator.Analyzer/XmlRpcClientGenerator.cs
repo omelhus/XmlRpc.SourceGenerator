@@ -86,8 +86,8 @@ namespace XmlRpc.SourceGenerator
                         }
                         else
                         {
-                            returnType = genericNameSyntax.TypeArgumentList.Arguments[0].ToFullString().Trim();
-                            methodReturnType = genericNameSyntax.ToFullString().Trim();
+                            returnType = genericNameSyntax.TypeArgumentList.Arguments[0].ToString().Trim();
+                            methodReturnType = genericNameSyntax.ToString().Trim();
                         }
 
                         var methodAttribute = GetAttributeWithName(method.AttributeLists, XmlRpcMethodAttributeName, model);
