@@ -147,20 +147,7 @@ namespace XmlRpc.SourceGenerator.Tests
                 });
             var client = new HttpClient(mockHttp);
             var response = await client.SendXmlRpcRequest<TestSerializerClass>("https://localost/xml-rpc", "testCommand", source);
-            response.Should().NotBeNull();
-            response.Id.Should().Be(source.Id);
-            response.Date.Should().Be(source.Date);
-            response.Number.Should().Be(source.Number);
-            response.Double.Should().Be(source.Double);
-            response.SomeData.Should().BeEquivalentTo(source.SomeData);
-            response.List.Should().BeEquivalentTo(source.List);
-            response.SomeSubType.Id.Should().Be(source.SomeSubType.Id);
-            response.SomeBool.Should().Be(source.SomeBool);
-            response.SomeLong.Should().Be(source.SomeLong);
-            response.SomeEnum.Should().Be(source.SomeEnum);
-            response.Hashtable.Keys.Should().BeEquivalentTo(source.Hashtable.Keys);
-            response.Hashtable.Values.Should().BeEquivalentTo(source.Hashtable.Values);
-            response.SomeMultidim.Should().BeEquivalentTo(source.SomeMultidim);
+            response.Should().BeEquivalentTo(source);
         }
     }
 }
