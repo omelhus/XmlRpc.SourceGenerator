@@ -1,3 +1,7 @@
+[![.NET](https://github.com/omelhus/XmlRpc.SourceGenerator/actions/workflows/dotnet.yml/badge.svg)](https://github.com/omelhus/XmlRpc.SourceGenerator/actions/workflows/dotnet.yml)
+![Codecov](https://img.shields.io/codecov/c/github/omelhus/XmlRpc.SourceGenerator)
+[![Nuget](https://img.shields.io/nuget/dt/XmlRpc.SourceGenerator)](https://www.nuget.org/packages/XmlRpc.SourceGenerator/)
+
 # .Net XmlRpc SourceGenerator
 Using .Net 6 source generators to create a XML-RPC client. Serialization based on (now defunct) xml-rpc.net.
 
