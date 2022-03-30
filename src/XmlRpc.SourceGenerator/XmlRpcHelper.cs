@@ -26,8 +26,14 @@ namespace XmlRpc.SourceGenerator
             var rsp = await httpClient
                 .PostAsync(url, new StreamContent(request) { Headers = { { "Content-Type", "text/xml" } } })
                 .ConfigureAwait(false);
+            return DeserializeResponse<T>(await rsp.Content.ReadAsStreamAsync().ConfigureAwait(false));
+
+        }
+
+        internal static T DeserializeResponse<T>(Stream stream) where T : class
+        {
             var deserializer = new XmlRpcResponseDeserializer();
-            return deserializer.DeserializeResponse(await rsp.Content.ReadAsStreamAsync().ConfigureAwait(false), typeof(T))?.retVal as T;
+            return deserializer.DeserializeResponse(stream, typeof(T))?.retVal as T;
         }
     }
 }

@@ -89,6 +89,17 @@ namespace XmlRpc.SourceGenerator.Tests
                 .UseDirectory("Snapshots");
         }
 
+        [DataTestMethod]
+        [DataRow("<invalid>", "XmlRpcInvalidXmlRpcException", DisplayName = "Invalid XML")]
+        [DataRow("<malFormed", "XmlRpcIllFormedXmlException", DisplayName = "Malformed XML")]
+        public void TestThatInvalidXmlThrowsExceptionInDeserializer(string input, string exceptionType)
+        {
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes(input));
+            var r = stream.Invoking(x => XmlRpcHelper.DeserializeResponse<object>(x))
+                .Should().Throw<XmlRpcException>();
+            TestContext.WriteLine(r.Which.GetType().Name);
+            r.Which.GetType().Name.Should().Be(exceptionType);
+        }
 
         [TestMethod]
         public Task TestCreateRpcCommandWithoutParameters()
