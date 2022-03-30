@@ -1,5 +1,5 @@
 [![.NET](https://github.com/omelhus/XmlRpc.SourceGenerator/actions/workflows/dotnet.yml/badge.svg)](https://github.com/omelhus/XmlRpc.SourceGenerator/actions/workflows/dotnet.yml)
-![Codecov](https://img.shields.io/codecov/c/github/omelhus/XmlRpc.SourceGenerator)
+[![Codecov](https://img.shields.io/codecov/c/github/omelhus/XmlRpc.SourceGenerator)](https://app.codecov.io/gh/omelhus/XmlRpc.SourceGenerator/)
 [![Nuget](https://img.shields.io/nuget/dt/XmlRpc.SourceGenerator)](https://www.nuget.org/packages/XmlRpc.SourceGenerator/)
 
 # .Net XmlRpc SourceGenerator
